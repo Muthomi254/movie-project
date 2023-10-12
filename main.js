@@ -1,192 +1,145 @@
-// document.addEventListener('DOMContentLoaded', function () {
-//   const movieListContainer = document.getElementById('movieList');
-//   const searchForm = document.getElementById('searchForm');
-//   const searchInput = document.getElementById('searchInput');
-//   const addMovieForm = document.getElementById('addMovieForm');
-//   const searchButton = document.getElementById('searchButton');
+document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.getElementById('searchInput');
+  const movieList = document.getElementById('movieList');
+  const addMovieForm = document.getElementById('addMovieForm');
 
-//   let movies = [];
+  // Initial display of movies
+  fetchMovies();
 
-//   // Initial display of movies
-//   fetchMovies();
+  // Search movies
+  document.querySelector('#searchForm button[type="button"]').addEventListener('click', function () {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    searchMovies(searchTerm);
+  });
 
-//   // Search movies
-//   searchForm.addEventListener('submit', function (event) {
-//     event.preventDefault();
-//     const searchTerm = searchInput.value.trim().toLowerCase();
-//     searchMovies(searchTerm);
-//   });
+  // Add movie
+  document.querySelector('#addMovieForm button[type="button"]').addEventListener('click', function () {
+    const title = document.getElementById('title').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const director = document.getElementById('director').value.trim();
+    const rating = parseFloat(document.getElementById('rating').value.trim());
+    const posterImageUrl = document.getElementById('posterImageUrl').value.trim();
 
-//   // Search movies on button click
-//   searchButton.addEventListener('click', function () {
-//     const searchTerm = searchInput.value.trim().toLowerCase();
-//     searchMovies(searchTerm);
-//   });
+    if (title && description && director && !isNaN(rating) && posterImageUrl) {
+      const newMovie = {
+        title: title,
+        description: description,
+        director: director,
+        rating: rating,
+        posterImageUrl: posterImageUrl,
+      };
 
-//   // Add movie
-//   addMovieForm.addEventListener('submit', function (event) {
-//     event.preventDefault();
-//     const title = document.getElementById('title').value.trim();
-//     const description = document.getElementById('description').value.trim();
+      addMovie(newMovie);
+    }
+  });
 
-//     if (title && description) {
-//       const newMovie = {
-//         title: title,
-//         description: description,
-//       };
+  // Function to fetch movies from the server
+  async function fetchMovies() {
+    try {
+      const response = await fetch('http://localhost:3000/movies');
+      const data = await response.json();
+      const movies = data.movies || [];
+      displayMovies(movies);
+    } catch (error) {
+      console.error('Error fetching movies:', error.message);
+    }
+  }
 
-//       addMovie(newMovie);
-//       addMovieForm.reset();
-//     }
-//   });
+  // Function to make a GET request to search movies
+  async function searchMovies(searchTerm) {
+    try {
+      const response = await fetch(`http://localhost:3000/movies?q=${searchTerm}`);
+      const data = await response.json();
+      displayMovies(data.movies || []);
+    } catch (error) {
+      console.error('Error searching movies:', error.message);
+    }
+  }
 
-//   // Update and delete functionality
-//   movieListContainer.addEventListener('click', function (event) {
-//     const target = event.target;
+  // Function to make a POST request to add a movie
+  async function addMovie(newMovie) {
+    try {
+      const response = await fetch('http://localhost:3000/movies', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newMovie),
+      });
+      const data = await response.json();
+      const movies = data.movies || [];
+      displayMovies(movies);
+      addMovieForm.reset();
+    } catch (error) {
+      console.error('Error adding movie:', error.message);
+    }
+  }
 
-//     if (target.classList.contains('update-btn')) {
-//       const movieId = target.dataset.id;
-//       const updatedTitle = prompt('Enter updated title:');
-//       const updatedDescription = prompt('Enter updated description:');
+  // Function to display movies in the movie list container
+  function displayMovies(movieArray) {
+    movieList.innerHTML = '';
 
-//       if (updatedTitle !== null && updatedDescription !== null) {
-//         updateMovie(movieId, { title: updatedTitle, description: updatedDescription });
-//       }
-//     } else if (target.classList.contains('delete-btn')) {
-//       const movieId = target.dataset.id;
-//       const confirmDelete = confirm('Are you sure you want to delete this movie?');
+    movieArray.forEach(function (movie) {
+      const movieCard = createMovieCard(movie);
+      movieList.appendChild(movieCard);
+    });
+  }
 
-//       if (confirmDelete) {
-//         deleteMovie(movieId);
-//       }
-//     }
-//   });
+  // Function to create a movie card
+  function createMovieCard(movie) {
+    // Create movie card DOM elements and append them to movieList
+    const card = document.createElement('div');
+    card.classList.add('col-md-4', 'mb-4');
 
-//   // Function to fetch movies from the server
-//   async function fetchMovies() {
-//     try {
-//       const response = await fetch('http://localhost:3000/movies');
-//       const data = await response.json();
-//       movies = data.movies || [];
-//       displayMovies(movies);
-//     } catch (error) {
-//       console.error('Error fetching movies:', error.message);
-//     }
-//   }
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card', 'h-100');
 
-//   // Function to search movies from the server
-//   async function searchMovies(searchTerm) {
-//     try {
-//       const response = await fetch(`http://localhost:3000/movies?search=${searchTerm}`);
-//       const data = await response.json();
-//       movies = data.movies || [];
-//       displayMovies(movies);
-//     } catch (error) {
-//       console.error('Error searching movies:', error.message);
-//     }
-//   }
+    const cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-header');
+    cardTitle.textContent = movie.title;
 
-//   // Function to add a new movie
-//   async function addMovie(newMovie) {
-//     try {
-//       const response = await fetch('http://localhost:3000/movies', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(newMovie),
-//       });
-//       const data = await response.json();
-//       updateMovies(data.movies || []);
-//     } catch (error) {
-//       console.error('Error adding movie:', error.message);
-//     }
-//   }
+    const cardText = document.createElement('p');
+    cardText.classList.add('card-body');
+    cardText.textContent = movie.description;
 
-//   // Function to update a movie
-//   async function updateMovie(movieId, updatedMovie) {
-//     try {
-//       const response = await fetch(`http://localhost:3000/movies/${movieId}`, {
-//         method: 'PUT',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(updatedMovie),
-//       });
-//       const data = await response.json();
-//       updateMovies(data.movies || []);
-//     } catch (error) {
-//       console.error('Error updating movie:', error.message);
-//     }
-//   }
+    const directorInfo = document.createElement('p');
+    directorInfo.classList.add('card-body');
+    directorInfo.innerHTML = `<strong>Director:</strong> ${movie.director}`;
 
-//   // Function to delete a movie
-//   async function deleteMovie(movieId) {
-//     try {
-//       const response = await fetch(`http://localhost:3000/movies/${movieId}`, {
-//         method: 'DELETE',
-//       });
-//       const data = await response.json();
-//       updateMovies(data.movies || []);
-//     } catch (error) {
-//       console.error('Error deleting movie:', error.message);
-//     }
-//   }
+    const ratingInfo = document.createElement('p');
+    ratingInfo.classList.add('card-body');
+    ratingInfo.innerHTML = `<strong>Rating:</strong> ${movie.rating}`;
 
-//   // Function to update the local movies array and display movies
-//   function updateMovies(updatedMovies) {
-//     movies = updatedMovies;
-//     displayMovies(movies);
-//   }
+    const posterImage = document.createElement('img');
+    posterImage.classList.add('card-img-top');
+    posterImage.src = movie.posterImageUrl;
+    posterImage.alt = movie.title;
 
-//   // Function to display movies in the movie list container
-//   function displayMovies(movieArray) {
-//     movieListContainer.innerHTML = '';
+    const buttonGroup = document.createElement('div');
+    buttonGroup.classList.add('btn-group');
 
-//     movieArray.forEach(function (movie) {
-//       const movieCard = createMovieCard(movie);
-//       movieListContainer.appendChild(movieCard);
-//     });
-//   }
+    const updateBtn = document.createElement('button');
+    updateBtn.classList.add('btn', 'btn-info', 'update-btn');
+    updateBtn.textContent = 'Update';
+    updateBtn.dataset.id = movie.id;
 
-//   // Function to create a movie card
-//   function createMovieCard(movie) {
-//     const card = document.createElement('div');
-//     card.classList.add('col-md-4', 'mb-4');
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('btn', 'btn-danger', 'delete-btn');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.dataset.id = movie.id;
 
-//     const cardBody = document.createElement('div');
-//     cardBody.classList.add('card', 'h-100');
+    buttonGroup.appendChild(updateBtn);
+    buttonGroup.appendChild(deleteBtn);
 
-//     const cardTitle = document.createElement('h5');
-//     cardTitle.classList.add('card-header');
-//     cardTitle.textContent = movie.title;
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(directorInfo);
+    cardBody.appendChild(ratingInfo);
+    cardBody.appendChild(posterImage);
+    cardBody.appendChild(buttonGroup);
 
-//     const cardText = document.createElement('p');
-//     cardText.classList.add('card-body');
-//     cardText.textContent = movie.description;
+    card.appendChild(cardBody);
 
-//     const buttonGroup = document.createElement('div');
-//     buttonGroup.classList.add('btn-group');
-
-//     const updateBtn = document.createElement('button');
-//     updateBtn.classList.add('btn', 'btn-info', 'update-btn');
-//     updateBtn.textContent = 'Update';
-//     updateBtn.dataset.id = movie.id;
-
-//     const deleteBtn = document.createElement('button');
-//     deleteBtn.classList.add('btn', 'btn-danger', 'delete-btn');
-//     deleteBtn.textContent = 'Delete';
-//     deleteBtn.dataset.id = movie.id;
-
-//     buttonGroup.appendChild(updateBtn);
-//     buttonGroup.appendChild(deleteBtn);
-
-//     cardBody.appendChild(cardTitle);
-//     cardBody.appendChild(cardText);
-//     cardBody.appendChild(buttonGroup);
-
-//     card.appendChild(cardBody);
-
-//     return card;
-//   }
-// });
+    return card;
+  }
+});
