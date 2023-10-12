@@ -3,11 +3,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const movieList = document.getElementById('movieList');
   const addMovieForm = document.getElementById('addMovieForm');
 
+  if (!searchInput || !movieList || !addMovieForm) {
+    console.error('One or more elements not found.');
+    return;
+  }
+
   // Initial display of movies
   fetchMovies();
 
   // Search movies
-  document.querySelector('#searchForm button[type="button"]').addEventListener('click', function () {
+  document.querySelector('#searchForm button[type="submit"]').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default form submission
     const searchTerm = searchInput.value.trim().toLowerCase();
     searchMovies(searchTerm);
   });
