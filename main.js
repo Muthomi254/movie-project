@@ -1,76 +1,3 @@
-// function displayMovieCards(movies) {
-//   const movieListContainer = document.getElementById("movieList");
-//   movies.forEach((movie) => {
-//     const card = document.createElement("div");
-//     card.classList.add("card", "m-2", "col-5");
-
-//     const cardBody = document.createElement("div");
-//     cardBody.classList.add("card-body");
-
-//     const title = document.createElement("h5");
-//     title.classList.add("card-text");
-//     title.textContent = `Title ${movie.title}`;
-    
-
-
-//     cardBody.appendChild(title);
-
-//     card.appendChild(cardBody)
-//     movieListContainer.appendChild(card)
-
-//   });
-// }
-// displayMovies();
-// //to display movies
-
-// async function displayMovies() {
-//   const url = `http://localhost:3000/movies`;
-
-//   try {
-//     const response = await fetch(url, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`Error: ${response.statusText}`);
-//     }
-//     const data = response.json();
-//     console.log(data,typeof(data));
-//     const movies = await data;
-//     console.log(movies,typeof(movies));
-//     displayMovieCards(movies);
-//   } catch (error) {
-//     console.error("error from db", error);
-//   }
-//   document.getElementById("movieList");
-// }
-
-// //to search movies
-
-// async function searchMovies() {
-//   let searchTerm = document.getElementById("searchInput").value;
-//   const url = `http://localhost:3000/movies?query=${searchTerm}`;
-
-//   try {
-//     const response = await fetch(url, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`Error: ${response.statusText}`);
-//     }
-//     const data = response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error("error from db", error);
-//   }
-// }
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -157,3 +84,145 @@ async function addMovie() {
     alert('An error occurred. Please try again.');
   }
 }
+
+// main.js
+
+// Function to update a movie
+async function updateMovie() {
+  // Get the values from the update form
+  const updateMovieId = document.getElementById('updateMovieId').value;
+  const updateTitle = document.getElementById('updateTitle').value;
+  const updateDescription = document.getElementById('updateDescription').value;
+  const updateDirector = document.getElementById('updateDirector').value;
+  const updateRating = document.getElementById('updateRating').value;
+  const updatePosterImageUrl = document.getElementById('updatePosterImageUrl').value;
+
+  // Check if all fields are provided
+  if (!updateMovieId || !updateTitle || !updateDescription || !updateDirector || !updateRating || !updatePosterImageUrl) {
+    alert('Please fill in all the fields to update the movie.');
+    return;
+  }
+
+  try {
+    // Fetch URL for the specific movie ID
+    const updateUrl = `http://localhost:3000/movies/${updateMovieId}`;
+
+    // Send a PUT request to the backend with updated movie details
+    const updateResponse = await fetch(updateUrl, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: updateTitle,
+        description: updateDescription,
+        director: updateDirector,
+        rating: updateRating,
+        posterImageUrl: updatePosterImageUrl,
+      }),
+    });
+
+    // Check if the movie was updated successfully
+    if (updateResponse.ok) {
+      alert(`Movie "${updateTitle}" has been updated successfully.`);
+    } else {
+      alert('Failed to update the movie. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error updating movie:', error);
+    alert('An error occurred while updating the movie. Please try again.');
+  }
+}
+
+
+// main.js
+
+// Function to delete a movie
+async function deleteMovie() {
+  // Get the movie ID from the delete form
+  const deleteMovieId = document.getElementById('deleteMovieId').value;
+
+  // Check if the movie ID is provided
+  if (!deleteMovieId) {
+    alert('Please enter a Movie ID to delete.');
+    return;
+  }
+
+  try {
+    // Fetch URL for the specific movie ID
+    const deleteUrl = `http://localhost:3000/movies/${deleteMovieId}`;
+
+    // Send a DELETE request to the backend to delete the movie
+    const deleteResponse = await fetch(deleteUrl, {
+      method: 'DELETE',
+    });
+
+    // Check if the movie was deleted successfully
+    if (deleteResponse.ok) {
+      alert(`Movie with ID ${deleteMovieId} has been deleted successfully.`);
+    } else {
+      alert('Failed to delete the movie. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error deleting movie:', error);
+    alert('An error occurred while deleting the movie. Please try again.');
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', async function () {
+  // Function to fetch and display movies
+  async function displayMovies() {
+    try {
+      // Fetch URL for all movies
+      const moviesUrl = 'http://localhost:3000/movies';
+
+      // Send a GET request to the backend to get all movies
+      const response = await fetch(moviesUrl);
+
+      // Parse the response as JSON
+      const movies = await response.json();
+
+      // Get the movie list container
+      const movieListContainer = document.getElementById('movieList');
+
+      // Clear existing content in the movie list container
+      movieListContainer.innerHTML = '';
+
+      // Check if any movies were retrieved
+      if (movies.length === 0) {
+        const noMoviesMessage = document.createElement('p');
+        noMoviesMessage.textContent = 'No movies available.';
+        movieListContainer.appendChild(noMoviesMessage);
+        return;
+      }
+
+      // Iterate through the list of movies and create HTML elements for each
+      movies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('col-md-4', 'mb-4');
+
+        movieCard.innerHTML = `
+          <div class="card">
+            <img src="${movie.posterImageUrl}" class="card-img-top" alt="${movie.title}">
+            <div class="card-body">
+              <h5 class="card-title">${movie.title}</h5>
+              <p class="card-text">${movie.description}</p>
+              <p class="card-text"><strong>Director:</strong> ${movie.director}</p>
+              <p class="card-text"><strong>Rating:</strong> ${movie.rating}</p>
+            </div>
+          </div>
+        `;
+
+        // Append the movie card to the movie list container
+        movieListContainer.appendChild(movieCard);
+      });
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+      alert('An error occurred while fetching movies. Please try again.');
+    }
+  }
+
+  // Call the displayMovies function when the page loads
+  displayMovies();
+});
