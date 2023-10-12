@@ -6,7 +6,7 @@
       "description": "Teen Miles Morales becomes the Spider-Man of his universe, and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.",
       "director": "Bob Persichetti",
       "rating": "8.4",
-      "posterImageUrl": "https://www.joblo.com/assets/images/joblo/posters/2018/11/Spider-Verse-poster-1.jpg"
+      "posterImageUrl": "https://www.shutterstock.com/image-photo/bangkok-thailand-26-may-2023-beautiful-2308893211"
     },
     {
       "id": 2,
@@ -121,17 +121,12 @@
       "posterImageUrl": "images/theinvisibleman.jpg"
     },
     {
-      "title": "jwjk",
-      "description": "kdjka",
+      "title": "jump",
+      "description": "high",
+      "director": "you",
+      "rating": 5,
+      "posterImageUrl": "123",
       "id": 16
-    },
-    {
-      "title": "jh",
-      "description": "kklk",
-      "director": "lkk",
-      "rating": 1.5,
-      "posterImageUrl": "kkjjkl",
-      "id": 17
     }
   ]
 }

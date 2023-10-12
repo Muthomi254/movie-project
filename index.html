@@ -1,29 +1,35 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <title>Movie Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Movie Catalog</title>
 </head>
 <body>
 
 <div class="container mt-5">
   <h1 class="mb-4">Movie Catalog</h1>
 
+  <!-- Search Section -->
   <div class="row">
     <div class="col-md-6">
       <form id="searchForm">
         <div class="form-group">
           <input type="text" class="form-control" id="searchInput" placeholder="Search for movies">
         </div>
-        <button type="button" class="btn btn-primary" id = 'searchBtn' onclick="searchMovies()"> Search</button>
+        <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
       </form>
     </div>
   </div>
 
-  <div class="row mt-3"  id="movieList"></div>
+  <!-- Movie List Section -->
+  <div class="row mt-3" id="movieList"></div>
 
+  <!-- Add Movie Section -->
   <div class="row mt-5">
     <div class="col-md-6">
       <h2>Add Movie</h2>
@@ -52,6 +58,56 @@
       </form>
     </div>
   </div>
+
+  <!-- Update Movie Section -->
+        <!-- Update Movie Section -->
+<div class="row mt-5">
+  <div class="col-md-6">
+    <h2>Update Movie</h2>
+    <form id="updateMovieForm">
+      <div class="form-group">
+        <label for="updateMovieId">Movie ID to Update:</label>
+        <input type="number" class="form-control" id="updateMovieId" required>
+      </div>
+      <div class="form-group">
+        <label for="updateTitle">Title:</label>
+        <input type="text" class="form-control" id="updateTitle" required>
+      </div>
+      <div class="form-group">
+        <label for="updateDescription">Description:</label>
+        <textarea class="form-control" id="updateDescription" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="updateDirector">Director:</label>
+        <input type="text" class="form-control" id="updateDirector" required>
+      </div>
+      <div class="form-group">
+        <label for="updateRating">Rating:</label>
+        <input type="number" class="form-control" id="updateRating" step="0.1" required>
+      </div>
+      <div class="form-group">
+        <label for="updatePosterImageUrl">Poster Image URL:</label>
+        <input type="text" class="form-control" id="updatePosterImageUrl" required>
+      </div>
+      <button type="button" class="btn btn-warning" onclick="updateMovie()">Update Movie</button>
+    </form>
+  </div>
+</div>
+
+  <!-- Delete Movie Section -->
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <h2>Delete Movie</h2>
+      <form id="deleteMovieForm">
+        <div class="form-group">
+          <label for="deleteMovieTitle"> Enter Movie Title to Delete:</label>
+          <input type="number" class="form-control" id="deleteMovieId" required>
+        </div>
+        <button type="button" class="btn btn-danger" onclick="deleteMovie()">Delete Movie</button>
+      </form>
+    </div>
+  </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
