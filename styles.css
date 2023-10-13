@@ -13,7 +13,7 @@
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.10);
   cursor: pointer;
 }
 
@@ -73,7 +73,7 @@ h1 span {
   object-fit: cover;
   height: 200px;
   width: auto;
-  height: 60vh;
+  height: auto;
 }
 
 .card-body {
