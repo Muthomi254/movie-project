@@ -1,21 +1,22 @@
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
   // Search Button Click Event
   document.getElementById('searchBtn').addEventListener('click', function () {
-      const searchInput = document.getElementById('searchInput').value;
-      searchMovies(searchInput);
+    const searchInput = document.getElementById('searchInput').value;
+    searchMovies(searchInput);
   });
 });
 
 async function searchMovies(query) {
   try {
-      const response = await fetch(`http://localhost:3000/movies?q=${query}`);
-      const movies = await response.json();
+    const response = await fetch(`http://localhost:3000/movies?q=${query}`);
+    const movies = await response.json();
 
-      displayMoviesToHtml(movies);
+    displayMoviesToHtml(movies);
   } catch (error) {
-      console.error('Error fetching movies:', error);
+    console.error('Error fetching movies:', error);
   }
 }
 
@@ -24,23 +25,23 @@ function displayMoviesToHtml(movies) {
   movieListContainer.innerHTML = ''; // Clear previous movies
 
   movies.forEach(movie => {
-      const movieCard = document.createElement('div');
-      movieCard.className = 'card movie_card';
-      movieCard.id = movie.id;
+    const movieCard = document.createElement('div');
+    movieCard.className = 'card movie_card';
+    movieCard.id = movie.id;
 
-      movieCard.innerHTML = `
-          <img src="${movie.posterImageUrl}" class="card-img-top" alt="${movie.title}">
-          <div class="card-body">
-              <h5 class="card-title">${movie.title}</h5>
-              <p class="card-text">${movie.description}</p>
-              <span class="movie_info"><i class="fa fa-user"></i> ${movie.director}</span>
-              <span class="movie_info float-right"><i class="fa fa-star"></i> ${movie.rating}</span>
-          </div>
-      `;
+    movieCard.innerHTML = `
+      <img src="${movie.posterImageUrl}" class="card-img-top" alt="${movie.title}">
+      <div class="card-body">
+        <h6 class="id">ID: ${movie.id}</h6>
+        <h5 class="card-title">${movie.title}</h5>
+        <p class="card-text">${movie.description}</p>
+        <span class="movie_info"><i class="fa fa-user"></i> ${movie.director}</span>
+        <span class="movie_info float-right"><i class="fa fa-star"></i> ${movie.rating}</span>
+      </div>
+    `;
 
-      movieListContainer.appendChild(movieCard);
+    movieListContainer.appendChild(movieCard);
   });
-
 }
 
 async function addMovie() {
@@ -84,7 +85,6 @@ async function addMovie() {
     alert('An error occurred. Please try again.');
   }
 }
-
 
 // Function to update a movie
 async function updateMovie() {
@@ -133,9 +133,6 @@ async function updateMovie() {
   }
 }
 
-
-
-
 // Function to delete a movie
 async function deleteMovie() {
   // Get the movie ID from the delete form
@@ -168,27 +165,17 @@ async function deleteMovie() {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', async function () {
   // Function to fetch and display movies
   async function displayMovies() {
     try {
-      // Fetch URL for all movies
       const moviesUrl = 'http://localhost:3000/movies';
-
-      // Send a GET request to the backend to get all movies
       const response = await fetch(moviesUrl);
-
-      // Parse the response as JSON
       const movies = await response.json();
 
-      // Get the movie list container
       const movieListContainer = document.getElementById('movieList');
-
-      // Clear existing content in the movie list container
       movieListContainer.innerHTML = '';
 
-      // Check if any movies were retrieved
       if (movies.length === 0) {
         const noMoviesMessage = document.createElement('p');
         noMoviesMessage.textContent = 'No movies available.';
@@ -196,7 +183,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         return;
       }
 
-      // Iterate through the list of movies and create HTML elements for each
       movies.forEach(movie => {
         const movieCard = document.createElement('div');
         movieCard.classList.add('col-md-4', 'mb-4');
