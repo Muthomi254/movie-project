@@ -134,7 +134,7 @@ async function updateMovie() {
 }
 
 
-// main.js
+
 
 // Function to delete a movie
 async function deleteMovie() {
