@@ -16,13 +16,16 @@ Deployed Frontend can be accessed here [movie catalog](http://127.0.0.1:5500/ind
 
 ## Known Bugs
     The application images don't open on-click but on search 
+    Press search when empty to resize
     Otherwise application works perfectly well, no bugs.
+
 
 ## Technologies used
     - JS
     - HTML and CSS
     - Fontawesome
     - BOOTSRAP
+    - DB.JSON
 
 ## Support and contact details
     - email :: dmunene202020@gmail.com

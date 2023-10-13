@@ -1,6 +1,7 @@
 
 
 .card {
+  margin-top: 15px;
   width: auto;
   height: auto;
   border: 1px solid #ddd;
@@ -47,6 +48,7 @@
 
 body {
   background-color: #f8f9fa;
+  margin: auto;
 }
 
 h1 span {
