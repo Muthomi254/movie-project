@@ -12,9 +12,31 @@
 </head>
 <body>
 
-<div class="container mt-5">
-  <h1 class="mb-4">Movie <span>Zone</span></h1>
+  <!-- Header Section -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+ 
+  <h1 class="navbar-brand">Movie <span>Zone</span></h1>
 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  
   <!-- Search Section -->
   <div class="row">
     <div class="col-md-6">
@@ -110,6 +132,16 @@
   </div>
 
 </div>
+
+
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <!-- Add your social media icons here -->
+    <i class="fab fa-facebook-f mx-2"></i>
+    <i class="fab fa-twitter mx-2"></i>
+    <i class="fab fa-instagram mx-2"></i>
+  </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
