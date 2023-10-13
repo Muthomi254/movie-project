@@ -96,31 +96,45 @@
       "rating": "6.2",
       "posterImageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Resistance_poster.jpg/220px-Resistance_poster.jpg"
     },
-
-      { "id": 13,
-    "title": "The Call of the Wild",
-    "description": "A sled dog struggles for survival in the wilds of the Yukon.",
-    "director": "Chris Sanders",
-    "rating": "6.8",
-    "posterImageUrl": "https://upload.wikimedia.org/wikipedia/en/4/43/The_Call_of_the_Wild_poster.jpg"
-  },
-  {
-    "id": 14,
-    "title": "The Hunt",
-    "description": "Twelve strangers wake up in a clearing. They don't know they've been chosen - for a very specific purpose - The Hunt.",
-    "director": "David S.F. Wilson",
-    "rating": "4.5",
-    "posterImageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a9/The_Hunt_2020_poster.png"
-  },
-  {
-    "id": 15,
-    "title": "The Invisible Man",
-    "description": "When Cecilia's abusive ex takes his own life and leaves her his fortune, Cecilia works to prove that she is being hunted by someone nobody can see.",
-    "director": "Leigh Whannell",
-    "rating": "7.1",
-    "posterImageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3a/The_Invisible_Man_%282020_film%29_-_release_poster.jpg"
-  }
-  
-    
+    {
+      "id": 13,
+      "title": "The Call of the Wild",
+      "description": "A sled dog struggles for survival in the wilds of the Yukon.",
+      "director": "Chris Sanders",
+      "rating": "6.8",
+      "posterImageUrl": "https://upload.wikimedia.org/wikipedia/en/4/43/The_Call_of_the_Wild_poster.jpg"
+    },
+    {
+      "id": 14,
+      "title": "The Hunt",
+      "description": "Twelve strangers wake up in a clearing. They don't know they've been chosen - for a very specific purpose - The Hunt.",
+      "director": "David S.F. Wilson",
+      "rating": "4.5",
+      "posterImageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a9/The_Hunt_2020_poster.png"
+    },
+    {
+      "id": 15,
+      "title": "The Invisible Man",
+      "description": "When Cecilia's abusive ex takes his own life and leaves her his fortune, Cecilia works to prove that she is being hunted by someone nobody can see.",
+      "director": "Leigh Whannell",
+      "rating": "7.1",
+      "posterImageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3a/The_Invisible_Man_%282020_film%29_-_release_poster.jpg"
+    },
+    {
+      "title": "avengers",
+      "description": "save the world",
+      "director": "unknown",
+      "rating": 7.5,
+      "posterImageUrl": "https://w0.peakpx.com/wallpaper/551/479/HD-wallpaper-avengers-poster-avengers-poster-marvels-super-hero-superhero-the-avengers.jpg",
+      "id": 16
+    },
+    {
+      "title": "",
+      "description": "",
+      "director": "",
+      "rating": null,
+      "posterImageUrl": "",
+      "id": 17
+    }
   ]
 }

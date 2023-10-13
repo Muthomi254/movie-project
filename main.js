@@ -85,7 +85,6 @@ async function addMovie() {
   }
 }
 
-// main.js
 
 // Function to update a movie
 async function updateMovie() {

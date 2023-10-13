@@ -1,7 +1,8 @@
-/* Add this CSS to your stylesheet or in a <style> tag in the head of your HTML */
+
 
 .card {
-  width: 100%;
+  width: auto;
+  height: auto;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -13,7 +14,7 @@
 }
 
 .card-img-top {
-  width: 100%;
+  width: auto;
   height: auto;
 }
 
@@ -30,6 +31,7 @@
 .card-text {
   font-size: 1rem;
   margin-bottom: 0.75rem;
+  
 }
 
 .movie_info {
@@ -40,4 +42,63 @@
 
 .float-right {
   float: right;
+}
+
+
+body {
+  background-color: #f8f9fa;
+}
+
+h1 span {
+  color: #007bff;
+}
+
+.btn-primary,
+.btn-success,
+.btn-warning,
+.btn-danger {
+  color: #fff;
+}
+
+.movie_card {
+  width: 18rem;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+  width: auto;
+  height: auto;
+}
+
+.card-body {
+  background-color: #343a40;
+  color: white;
+}
+
+.movie_info {
+  color: white;
+}
+
+.movie_info.blue {
+  color: #007bff;
+}
+
+/* Additional styling for forms */
+form {
+
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Adjust spacing for form labels */
+form label {
+  margin-bottom: 1.5rem;
+}
+
+/* Add margin to the buttons in the forms */
+form button {
+  margin-top: 10px;
 }
