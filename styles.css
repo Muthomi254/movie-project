@@ -8,10 +8,13 @@
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
+  margin: 1.5rem;
+  
 }
 
 .card:hover {
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .card-img-top {
@@ -70,7 +73,7 @@ h1 span {
   object-fit: cover;
   height: 200px;
   width: auto;
-  height: auto;
+  height: 80vh;
 }
 
 .card-body {
@@ -93,6 +96,7 @@ form {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  
 }
 
 /* Adjust spacing for form labels */
