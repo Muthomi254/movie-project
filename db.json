@@ -127,6 +127,14 @@
       "rating": 7.5,
       "posterImageUrl": "https://w0.peakpx.com/wallpaper/551/479/HD-wallpaper-avengers-poster-avengers-poster-marvels-super-hero-superhero-the-avengers.jpg",
       "id": 16
+    },
+    {
+      "title": "JAWS",
+      "description": "SHARK",
+      "director": "DAN",
+      "rating": 7.8,
+      "posterImageUrl": "https://img.buzzfeed.com/buzzfeed-static/static/2022-03/28/2/asset/2b92f7d73e60/sub-buzz-6384-1648433205-1.jpg",
+      "id": 17
     }
   ]
 }

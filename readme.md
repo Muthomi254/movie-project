@@ -11,7 +11,7 @@
     - And your application is running.
        
 ## Live link
-Deployed Frontend can be accessed here [movie catalog](http://127.0.0.1:5500/index.html?)   
+Deployed Frontend can be accessed here [movie catalog](https://muthomi254.github.io/movie-project/)   
 
 
 ## Known Bugs
