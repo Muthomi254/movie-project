@@ -1,4 +1,9 @@
 
+const { JSDOM } = require('jsdom');
+
+// Create a fake DOM environment
+const dom = new JSDOM();
+global.document = dom.window.document;
 
 
 document.addEventListener('DOMContentLoaded', function () {
