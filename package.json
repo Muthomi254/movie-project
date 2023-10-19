@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/Muthomi254/movie-project#readme",
   "dependencies": {
-    "jsdom": "^22.1.0",
     "json-server": "^0.17.4"
   }
 }
