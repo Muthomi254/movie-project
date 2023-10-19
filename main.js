@@ -1,9 +1,9 @@
 const MODE = 'dev';
 // Deployed version
-// const BASEURL = "https://movie-zone-g3b3.onrender.com";
+const BASEURL = "https://movie-zone-g3b3.onrender.com";
 
 // Local version
-const BASEURL = "http://localhost:3000";
+// const BASEURL = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Search Button Click Event
