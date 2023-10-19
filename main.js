@@ -1,9 +1,9 @@
 const MODE = 'dev';
 // Deployed version
-const BASEURL = "https://movie-zone-g3b3.onrender.com";
+// const BASEURL = "https://movie-zone-g3b3.onrender.com";
 
 // Local version
-// const BASEURL = "http://localhost:3000";
+const BASEURL = "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Search Button Click Event
@@ -67,7 +67,7 @@ async function addMovie() {
 
   try {
     // Make a POST request to add the movie
-    const response = await fetch("http://localhost:3000/movies", {
+    const response = await fetch(`${BASEURL}/movies`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +117,7 @@ async function updateMovie() {
 
   try {
     // Fetch URL for the specific movie ID
-    const updateUrl = `http://localhost:3000/movies/${updateMovieId}`;
+    const updateUrl = `${BASEURL}/movies/${updateMovieId}`;
 
     // Send a PUT request to the backend with updated movie details
     const updateResponse = await fetch(updateUrl, {
@@ -159,7 +159,7 @@ async function deleteMovie() {
 
   try {
     // Fetch URL for the specific movie ID
-    const deleteUrl = `http://localhost:3000/movies/${deleteMovieId}`;
+    const deleteUrl = `${BASEURL}/movies/${deleteMovieId}`;
 
     // Send a DELETE request to the backend to delete the movie
     const deleteResponse = await fetch(deleteUrl, {
